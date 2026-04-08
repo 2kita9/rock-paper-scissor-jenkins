@@ -1,1 +1,121 @@
-stuff
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Rock Paper Scissors</title>
+
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: linear-gradient(135deg, #1e3c72, #2a5298);
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+
+    .game-box {
+        background: rgba(255, 255, 255, 0.1);
+        padding: 30px;
+        border-radius: 15px;
+        text-align: center;
+        width: 350px;
+        box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+    }
+
+    h1 {
+        margin-bottom: 10px;
+    }
+
+    .score {
+        display: flex;
+        justify-content: space-around;
+        margin: 20px 0;
+        font-size: 18px;
+    }
+
+    .choices {
+        display: flex;
+        justify-content: space-around;
+        margin-top: 20px;
+    }
+
+    button {
+        background: white;
+        border: none;
+        padding: 10px 15px;
+        border-radius: 10px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: 0.3s;
+    }
+
+    button:hover {
+        transform: scale(1.1);
+        background: #ffdd57;
+    }
+
+    .result {
+        margin-top: 20px;
+        font-size: 20px;
+        font-weight: bold;
+    }
+</style>
+</head>
+
+<body>
+
+<div class="game-box">
+    <h1>✊ Rock Paper Scissors ✋</h1>
+
+    <div class="score">
+        <div>You: <span id="userScore">0</span></div>
+        <div>Computer: <span id="compScore">0</span></div>
+    </div>
+
+    <div class="choices">
+        <button onclick="play('rock')">✊ Rock</button>
+        <button onclick="play('paper')">✋ Paper</button>
+        <button onclick="play('scissors')">✌ Scissors</button>
+    </div>
+
+    <div class="result" id="result">Make your move!</div>
+</div>
+
+<script>
+let userScore = 0;
+let compScore = 0;
+
+function play(userChoice) {
+    const choices = ['rock', 'paper', 'scissors'];
+    const compChoice = choices[Math.floor(Math.random() * 3)];
+
+    let resultText = "";
+
+    if (userChoice === compChoice) {
+        resultText = "It's a Draw!";
+    } 
+    else if (
+        (userChoice === 'rock' && compChoice === 'scissors') ||
+        (userChoice === 'paper' && compChoice === 'rock') ||
+        (userChoice === 'scissors' && compChoice === 'paper')
+    ) {
+        userScore++;
+        resultText = "You Win! 🎉";
+    } 
+    else {
+        compScore++;
+        resultText = "Computer Wins! 🤖";
+    }
+
+    document.getElementById("userScore").innerText = userScore;
+    document.getElementById("compScore").innerText = compScore;
+    document.getElementById("result").innerText = 
+        `You chose ${userChoice}, Computer chose ${compChoice}. ${resultText}`;
+}
+</script>
+
+</body>
+</html>
