@@ -139,20 +139,20 @@ pipeline {
             }
         }
 
-        stage('AWS Connection Test') {
-            steps {
-                echo 'Testing AWS connection...'
+      //   stage('AWS Connection Test') {
+      //       steps {
+      //           echo 'Testing AWS connection...'
 
-                withCredentials([
-                    [$class: 'AmazonWebServicesCredentialsBinding',
-                     credentialsId: 'aws-jenkins-ecs']
-                ]) {
-                    sh '''
-                        aws sts get-caller-identity
-                    '''
-                }
-            }
-        }
+      //           withCredentials([
+      //               [$class: 'AmazonWebServicesCredentialsBinding',
+      //                credentialsId: 'aws-jenkins-ecs']
+      //           ]) {
+      //               sh '''
+      //                   aws sts get-caller-identity
+      //               '''
+      //           }
+      //       }
+      //   }
 
         stage('Deploy to ECS') {
             steps {
