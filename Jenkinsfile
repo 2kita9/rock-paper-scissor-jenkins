@@ -91,7 +91,7 @@ pipeline {
                 echo "Building Docker image: ${DOCKER_IMAGE}:${IMAGE_TAG}"
 
                 sh '''
-                    docker build \
+                    docker build --pull --no-cache \
                     -t ${DOCKER_IMAGE}:${IMAGE_TAG} \
                     -t ${DOCKER_IMAGE}:latest \
                     .
