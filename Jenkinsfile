@@ -52,7 +52,6 @@ pipeline {
                     sh '''
                         echo "=== Maven version ==="
                         mvn --version
-
                         echo "=== SonarQube environment ==="
                         env | grep SONAR || true
 
